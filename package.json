@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/ounai/horstrivia#readme",
   "dependencies": {
+    "axios": "^0.21.0",
+    "he": "^1.2.0",
     "node-telegram-bot-api": "^0.50.0"
   }
 }
