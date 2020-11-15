@@ -12,8 +12,47 @@ function handleError(err) {
   console.error(err);
 }
 
+function getQuestionHTML(question) {
+  let html = `<strong>${question.question}</strong>`;
+  html += '\n\n';
+  //html += `Difficulty: <em>${question.difficulty}</em>`;
+
+  return html;
+}
+
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
+function getInlineKeyboard(question) {
+  let keyboard = [];
+
+  const addKey = (text, isCorrect) => {
+    keyboard.push([{
+      text,
+      callback_data: (isCorrect ? '1' : '0')
+    }]);
+  };
+  
+  addKey(question.correct_answer, true);
+  question.incorrect_answers.forEach(answer => addKey(answer, false));
+
+  shuffleArray(keyboard);
+
+  return keyboard;
+}
+
 function sendQuestion(chatId, question) {
-  bot.sendMessage(chatId, JSON.stringify(question));
+  bot.sendMessage(chatId, getQuestionHTML(question), {
+    parse_mode: 'HTML',
+    reply_markup: {
+      inline_keyboard: getInlineKeyboard(question)
+    }
+  });
 }
 
 bot.onText(/^\/start/, (msg, match) => {

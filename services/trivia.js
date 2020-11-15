@@ -29,17 +29,17 @@ function getQuestion() {
 function translateQuestion(encodedQuestion) {
   return new Promise((resolve, reject) => {
     const question = he.decode(encodedQuestion.question);
-
     const answers = [ he.decode(encodedQuestion.correct_answer) ];
+
     encodedQuestion.incorrect_answers.forEach(answer => answers.push(he.decode(answer)));
 
     translateService.translateArray([question, ...answers])
-      .then(data => {
+      .then(arr => {
         const translatedQuestion = {
           ...encodedQuestion,
-          question: data[0],
-          correct_answer: data[1],
-          incorrect_answers: data.splice(2)
+          question: arr[0],
+          correct_answer: arr[1],
+          incorrect_answers: arr.splice(2)
         };
 
         resolve(translatedQuestion);
