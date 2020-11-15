@@ -1,0 +1,24 @@
+{
+  "name": "horstrivia",
+  "version": "1.0.0",
+  "description": "Bad translation based trivia game over Telegram",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ounai/horstrivia.git"
+  },
+  "author": "Onni Rantanen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ounai/horstrivia/issues"
+  },
+  "homepage": "https://github.com/ounai/horstrivia#readme",
+  "dependencies": {
+    "node-telegram-bot-api": "^0.50.0"
+  }
+}

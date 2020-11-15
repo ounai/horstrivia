@@ -102,3 +102,11 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Install-specific config files
+config/
+
+# Temporary files
+*~
+*.swo
+*.swp
