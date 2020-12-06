@@ -9,6 +9,6 @@ botService().then(data => {
   console.log('Bot up and running!');
   console.log(data);
 }).catch(err => {
-  throw err;
+  console.error('Bot ran into an error:', err);
 });
 
