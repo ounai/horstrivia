@@ -1,8 +1,11 @@
 'use strict';
 
-const bot = require('./services/bot');
+const botService = require('./services/bot');
+const dbService = require('./services/db');
 
-bot().then(data => {
+dbService.load();
+
+botService().then(data => {
   console.log('Bot up and running!');
   console.log(data);
 }).catch(err => {

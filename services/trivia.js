@@ -7,45 +7,41 @@ const translateService = require('./translate.js');
 
 const API_URL = 'https://opentdb.com/api.php';
 
-function requestQuestions(amount, { category, difficulty, type } = {}) {
-  return new Promise((resolve, reject) => {
-    axios.get(API_URL, {
-      params: {
-        amount,
-        category,
-        difficulty,
-        type
-      }
-    })
-    .then(res => resolve(res.data.results[0]))
-    .catch(reject);
+async function requestQuestions(amount, { category, difficulty, type } = {}) {
+  const res = await axios.get(API_URL, {
+    params: {
+      amount,
+      category,
+      difficulty,
+      type
+    }
   });
+
+  return res.data.results[0];
 }
 
 function getQuestion() {
   return requestQuestions(1);
 }
 
-function translateQuestion(encodedQuestion) {
-  return new Promise((resolve, reject) => {
-    const question = he.decode(encodedQuestion.question);
-    const answers = [ he.decode(encodedQuestion.correct_answer) ];
+async function translateQuestion(encodedQuestion) {
+  const question = he.decode(encodedQuestion.question);
+  const answers = [ he.decode(encodedQuestion.correct_answer) ];
 
-    encodedQuestion.incorrect_answers.forEach(answer => answers.push(he.decode(answer)));
+  encodedQuestion.incorrect_answers.forEach(answer => answers.push(he.decode(answer)));
 
-    translateService.translateArray([question, ...answers])
-      .then(arr => {
-        const translatedQuestion = {
-          ...encodedQuestion,
-          question: arr[0],
-          correct_answer: arr[1],
-          incorrect_answers: arr.splice(2)
-        };
+  console.log('Translating', [question, ...answers]);
 
-        resolve(translatedQuestion);
-      })
-      .catch(reject);
-  });
+  const arr = await translateService.translateArray([question, ...answers]);
+
+  const translatedQuestion = {
+    ...encodedQuestion,
+    question: arr[0],
+    correct_answer: arr[1],
+    incorrect_answers: arr.splice(2)
+  };
+
+  return translatedQuestion;
 }
 
 module.exports = {

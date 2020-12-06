@@ -106,6 +106,9 @@ dist
 # Install-specific config files
 config/
 
+# Data files created by the program
+data/
+
 # Temporary files
 *~
 *.swo
