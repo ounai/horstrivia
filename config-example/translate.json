@@ -1,0 +1,5 @@
+{
+  "TRANSLATE_API_URL": "https://translate.api/path/to/api",
+  "SEPARATOR": ";"
+}
+

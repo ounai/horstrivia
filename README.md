@@ -4,7 +4,7 @@ Bad translation based trivia game over Telegram
 
 ## Configuration
 
-Two JSON files need to be created under `./config` before the bot can function
+Two JSON config files need to be created under `./config` before the bot can function. Example config can be found at `./config-example`.
 
 ### telegram.json
 
