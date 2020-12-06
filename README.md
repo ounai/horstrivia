@@ -4,13 +4,13 @@ Bad translation based trivia game over Telegram
 
 # Configuration
 
-Two files need to be created under `./config` before the bot can function
+Two JSON files need to be created under `./config` before the bot can function
 
 ## telegram.json
 
 `BOT_TOKEN` - Telegram bot API token
 
-`ALLOWED_CHATS` - array of chat id's the bot will respond to
+`ALLOWED_CHATS` - Array of chat id's the bot will respond to
 
 ## translate.json
 
