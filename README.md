@@ -1,10 +1,10 @@
 # Horstrivia
 
-Bad translation based trivia game over Telegram
+Bad translation based trivia game over Telegram. Questions from the [Open Trivia Database](https://opentdb.com/).
 
 ## Configuration
 
-Two JSON config files need to be created under `./config` before the bot can function. Example config can be found at `./config-example`.
+Two JSON config files need to be created under `./config` before the bot can function. Example config files can be found at `./config-example`
 
 ### telegram.json
 
